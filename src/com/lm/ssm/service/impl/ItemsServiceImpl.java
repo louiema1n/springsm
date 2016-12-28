@@ -21,4 +21,15 @@ public class ItemsServiceImpl implements IItemsService {
 		return itemsMapper.findAll();
 	}
 
+	@Override
+	public Items findById(Integer id) {
+		return itemsMapper.findById(id);
+	}
+
+	@Override
+	public void saveOrUpdate(Items item) {
+		itemsMapper.updateByExample(item);
+		
+	}
+
 }

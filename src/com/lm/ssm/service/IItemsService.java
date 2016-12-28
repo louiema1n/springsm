@@ -8,4 +8,8 @@ public interface IItemsService {
 
 	List<Items> findAll();
 
+	Items findById(Integer id);
+
+	void saveOrUpdate(Items item);
+
 }

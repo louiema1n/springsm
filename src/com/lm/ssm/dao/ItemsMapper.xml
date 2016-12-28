@@ -9,11 +9,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <result column="price" property="price" jdbcType="REAL" />
     <result column="pic" property="pic" jdbcType="VARCHAR" />
     <result column="createtime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="detail" property="detail" jdbcType="VARCHAR" />
   </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBs" type="com.lm.ssm.domain.Items" extends="BaseResultMap" ></resultMap>
   
   <!-- 查询所有 -->
   <select id="findAll" resultMap="BaseResultMap">
   	select * from items
   </select>
+  
+  <!-- 根据id所有 -->
+  <select id="findById" parameterType="int" resultMap="ResultMapWithBLOBs">
+  	select * from items where id = #{id}
+  </select>
+  
+  <!-- 更新 -->
+  <update id="updateByExample" parameterType="com.lm.ssm.domain.Items" >
+    update items
+    set 
+      name = #{name,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      pic = #{pic,jdbcType=VARCHAR},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      detail = #{detail}
+    where id = #{id}
+  </update>
   
  </mapper>

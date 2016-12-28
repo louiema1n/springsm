@@ -18,11 +18,27 @@ public class ItemsController {
 	@Resource
 	private IItemsService itemsService;
 	
+	//查询所有
 	@RequestMapping("list")
 	public String list(Model model) {
 		List<Items> list = itemsService.findAll();
 		model.addAttribute("itemsList", list);
 		return "itemsList";
+	}
+	
+	//修改
+	@RequestMapping("edit")
+	public String edit(Integer id, Model model) {
+		Items item = itemsService.findById(id);
+		model.addAttribute("item", item);
+		return "editItem";
+	}
+	
+	//修改保存
+	@RequestMapping("saveOrUpdate")
+	public String saveOrUpdate(Items item) {
+		itemsService.saveOrUpdate(item);
+		return "redirect:list.do";
 	}
 
 }
