@@ -2,6 +2,26 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
   <display-name>springsm</display-name>
   
+  <!-- osCache配置 -->
+  <filter>
+  	<filter-name>osCache</filter-name>
+  	<filter-class>com.opensymphony.oscache.web.filter.CacheFilter</filter-class>
+  	<!-- 配置参数 -->
+  	<init-param>
+  		<param-name>time</param-name>
+  		<param-value>60*60</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>scope</param-name>
+  		<param-value>application</param-value>
+  	</init-param>
+  </filter>
+  
+  <filter-mapping>
+  	<filter-name>osCache</filter-name>
+  	<url-pattern>/items/*</url-pattern>
+  </filter-mapping>
+  
   <!-- post编码 -->
   <filter>
   <filter-name>characterEncoding</filter-name>

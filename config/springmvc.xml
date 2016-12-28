@@ -21,11 +21,22 @@
 <!-- 配置注解驱动 -->
 <mvc:annotation-driven/>
 
-<!-- 配置视图解析 -->
+<!-- 配置freemarker支持 -->
+<bean id="freeMarkerConfigurer" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+	<property name="templateLoaderPath" value="/WEB-INF/pages/"></property>
+	<property name="defaultEncoding" value="utf-8"></property>
+</bean>
+<!-- freemarker视图解析 -->
+<bean class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+	<property name="suffix" value=".ftl"></property>
+	<property name="contentType" value="text/html;charset=utf-8"></property>
+</bean>
+
+<!-- 配置jsp视图解析 
 <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 	<property name="prefix" value="/WEB-INF/pages/"></property>
 	<property name="suffix" value=".jsp"></property>
-</bean>
+</bean>-->
 
 <!-- 文件上传解析器 -->
 <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
